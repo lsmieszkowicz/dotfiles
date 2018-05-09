@@ -32,7 +32,7 @@ floating_modifier $mod
 #default_border 1
 gaps inner 5
 gaps outer 2
-default_border pixel 2
+default_border pixel 3
 
 #######################################################################
 # COLORS
@@ -45,11 +45,11 @@ set_from_resource $red color1
 set_from_resource $green color2
 set_from_resource $magenta color13
 
-# class			border		background 	text		indicator	
-client.focused		$background	$background	$foreground	$blue		
-client.focused_inactive	$background	$background	$foreground	$blue	
-client.unfocused	$background	$background	$foreground	$blue		
-client.urgent		$red		$red		$foreground	$blue	
+# class					border			background		text		indicator	
+client.focused			$blue			$blue			$foreground	$blue		
+client.focused_inactive	$background		$background		$foreground	$blue	
+client.unfocused		$background		$background		$foreground	$blue		
+client.urgent			$red			$red			$foreground	$blue	
 
 client.background	$background
 # start a terminal
@@ -201,5 +201,5 @@ bar {
 	}
 }
 
-exec_always feh --bg-scale ~/.wallpaper.png
+exec_always feh --bg-scale ~/.wallpaper2.jpg
 exec_always compton --config ~/.compton.conf
