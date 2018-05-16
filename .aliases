@@ -1,0 +1,5 @@
+alias ll='ls -la --color=auto'
+alias i3edit='vim ~/.config/i3/config'
+alias comptonedit='vim ~/.compton.conf'
+alias xresedit='vim ~/.Xresources'
+alias polyedit='vim ~/.config/polybar/config'
