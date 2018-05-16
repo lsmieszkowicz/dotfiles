@@ -21,7 +21,7 @@ alert = #bd2c40
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 black = ${xrdb:color0}
-red = ${xrdb:coor1}
+red = ${xrdb:color1}
 green = ${xrdb:color2}
 yellow = ${xrdb:color3}
 blue = ${xrdb:color4}
@@ -32,7 +32,7 @@ white = ${xrdb:color7}
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 22
+height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0
@@ -44,7 +44,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 2
@@ -57,10 +57,11 @@ font-0 = Lucida Grande:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wuncon Siji:pixelsize=10;1
 font-3 = Font Awesome 5 Free:pixelsize=10;1
+font-4 = Font Awesome 5 Free:style=solid:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = mpd date temperature 
-modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery powermenu
+modules-right = cpu memory filesystem wlan xbacklight volume  eth battery battery2 powermenu
 
 tray-position = right
 tray-padding = 2
@@ -89,12 +90,12 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-underline =  ${colors.background}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.background}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -203,22 +204,22 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-prefix = "CPU: "
+format-prefix-foreground = ${colors.blue}
+format-underline = ${colors.background}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-prefix = "RAM: " 
+format-prefix-foreground = ${colors.magenta}
+format-underline = ${colors.background}
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp0s20u3u2
+interface = wlp4s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -236,7 +237,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -266,8 +267,8 @@ time-alt = %H:%M:%S
 
 ;format-prefix = 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.blue}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.background}
 
 label = %date% %time%
 
@@ -279,7 +280,7 @@ label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
 label-muted = sound muted
 
 bar-volume-width = 10
@@ -305,7 +306,7 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging =  <label-charging>
 format-charging-underline = #ffb52a
 
 format-discharging = <ramp-capacity> <label-discharging>
@@ -313,14 +314,43 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = #00000000
 
 ;format-full-prefix = " "
-format-full-prefix = " "
+format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.yellow}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/battery2]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+
+format-charging =  <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = #00000000
+
+;format-full-prefix = " "
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.foreground}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.yellow}
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -334,20 +364,20 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.background}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-warn-underline = ${colors.red}
 
 format-background = ${colors.background} 
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.foreground}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
@@ -356,8 +386,8 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
-label-open-foreground = ${colors.secondary}
+label-open =
+label-open-foreground = ${colors.blue}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
