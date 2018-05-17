@@ -62,7 +62,7 @@ font-5 = Font Awesome 5 Brands:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = mpd date temperature 
-modules-right = cpu memory filesystem wlan xbacklight volume  eth battery battery2 updates powermenu
+modules-right = cpu memory filesystem filesystem2 wlan xbacklight volume  eth battery battery2 updates powermenu
 
 tray-position = right
 tray-padding = 2
@@ -108,11 +108,21 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /home
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/filesystem2]
+type = internal/fs
+interval = 25
+
+mount-0 = /home
+
+label-mounted =  %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
 
 [module/bspwm]
 type = internal/bspwm
@@ -183,8 +193,8 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+format = <label> 
+label =  %percentage%
 
 bar-width = 10
 bar-indicator = |
@@ -205,7 +215,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU: "
+format-prefix = ""
 format-prefix-foreground = ${colors.blue}
 format-underline = ${colors.background}
 label = %percentage:2%%
@@ -213,7 +223,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM: " 
+format-prefix = "" 
 format-prefix-foreground = ${colors.magenta}
 format-underline = ${colors.background}
 label = %percentage_used%%
@@ -223,9 +233,9 @@ type = internal/network
 interface = wlp4s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
+format-connected =  <label-connected>
+format-connected-underline = ${colors.background}
+label-connected = " %signal%%"
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -276,8 +286,8 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+format-volume = <label-volume>
+label-volume =  %percentage%
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
@@ -415,7 +425,7 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 exec = pacman -Qu | wc -l
 interval = 3600
-format-prefix = "Pkg: "
+format-prefix =  
 format-underline = ${colors.background}
 
 [settings]
