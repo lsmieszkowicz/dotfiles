@@ -6,7 +6,6 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-
 ! special
 *.foreground:   #eceff1
 *.background:   #263238
@@ -43,4 +42,6 @@ URxvt.matcher.button: 1
 ! white
 *.color7:       #cfd8dc
 *.color15:      #eceff1
+
+
 
