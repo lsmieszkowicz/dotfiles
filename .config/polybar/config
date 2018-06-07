@@ -158,8 +158,8 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.blue}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
@@ -404,13 +404,13 @@ label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = reboot
-menu-0-0-exec = reboot
-menu-0-1 = power off
-menu-0-1-exec = poweroff
-menu-0-2 = suspend
+menu-0-0 = Power off
+menu-0-0-exec = poweroff
+menu-0-1 = Reboot
+menu-0-1-exec = reboot
+menu-0-2 = Suspend
 menu-0-2-exec = systemctl suspend
-menu-0-3 = logout
+menu-0-3 = Logout
 menu-0-3-exec = systemctl restart sddm
 
 menu-1-0 = cancel

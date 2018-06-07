@@ -1,4 +1,3 @@
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -8,10 +7,10 @@ font pango:Lucida Grande 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Gaps and border
 gaps inner 10
 gaps outer 10
 default_border pixel 3
-
 
 #######################################################################
 # COLORS
@@ -25,38 +24,35 @@ set_from_resource $green	  color2
 set_from_resource $magenta	  color13
 
 # class					border			background		text		indicator	
-client.focused			$blue			$blue			$foreground	$blue		
-client.focused_inactive	$background		$background		$foreground	$blue	
-client.unfocused		$background		$background		$foreground	$blue		
-client.urgent			$red			$red			$foreground	$blue	
+client.focused			        $blue			$blue			$foreground	$blue		
+client.focused_inactive	                $background		$background		$foreground	$blue	
+client.unfocused		        $background		$background		$foreground	$blue		
+client.urgent			        $red			$red			$foreground	$blue	
 
-client.background	    $background
+client.background	                $background
 
 # workspace names
-set $ws1 " Web"
-set $ws2 " Terminals"
-set $ws3 " Code"
-set $ws4 " Files"
-set $ws5 " Messaging"
-set $ws6 " Music"
-set $ws7 " Other 1"
-set $ws8 " Other 2"
-set $ws9 " Other 3"
+set $ws1  " Web"
+set $ws2  " Terminals"
+set $ws3  " Code"
+set $ws4  " Files"
+set $ws5  " Messaging"
+set $ws6  " Music"
+set $ws7  " Other 1"
+set $ws8  " Other 2"
+set $ws9  " Other 3"
 set $ws10 " Other 4"
 
 # start a terminal
 bindsym $mod+Return exec urxvt
 
 # kill focused window
+bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# start dmenu & rofi
 bindsym $mod+d exec dmenu_run
-bindsym Mod1+space exec rofi -show drun -theme /home/lukasz/.config/rofi/themes/onedark 
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym Mod1+space exec rofi -show run -theme /home/lukasz/.config/rofi/themes/onedark 
 
 # change focus
 bindsym $mod+h focus left
@@ -82,6 +78,18 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# resize windows without resize mode
+bindsym $mod+Control+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Control+k resize grow   height 10 px or 10 ppt
+bindsym $mod+Control+j resize shrink height 10 px or 10 ppt
+bindsym $mod+Control+l resize grow   width 10 px or 10 ppt
+
+# same bindings, but for the arrow keys
+bindsym $mod+Control+Left  resize shrink width 10 px or 10 ppt
+bindsym $mod+Control+Down  resize grow   height 10 px or 10 ppt
+bindsym $mod+Control+Up    resize shrink height 10 px or 10 ppt
+bindsym $mod+Control+Right resize grow   width 10 px or 10 ppt
+
 # split in horizontal orientation
 bindsym $mod+g split h
 
@@ -105,19 +113,14 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # backlight keys
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10; exec notify-send $(xbacklight -get) # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10; exec notify-send $(xbacklight -get) # decrease screen brightness
 
 # volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 10%+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 10%+; exec notify-send 'Volume + 10%'
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 10%-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 
 # gaps bindings
 bindsym $mod+Home gaps outer current plus  5; gaps inner current plus 5;
@@ -138,7 +141,7 @@ bindsym $mod+0 workspace $ws10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+3 move container to workspace $ws3 
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
@@ -147,19 +150,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# resize windows without resize mode
-bindsym $mod+Control+h resize shrink width 10 px or 10 ppt
-bindsym $mod+Control+k resize grow height 10 px or 10 ppt
-bindsym $mod+Control+j resize shrink height 10 px or 10 ppt
-bindsym $mod+Control+l resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-bindsym $mod+Control+Left  resize shrink width 10 px or 10 ppt
-bindsym $mod+Control+Down  resize grow height 10 px or 10 ppt
-bindsym $mod+Control+Up    resize shrink height 10 px or 10 ppt
-bindsym $mod+Control+Right resize grow width 10 px or 10 ppt
-
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -167,49 +157,16 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default" 
-}
-
-bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#	colors {
-#		background 	$background
-#		separator	$red
-#		#		border		background		text
-#		focused_workspace	$green		$green		$foreground
-#		inactive_workspace	$background	$background	$foreground
-#		urgent_workspace	$red		$red		$foreground
-#	}
-#}
-
-exec_always feh --bg-scale ~/.wallpaper.jpg
-exec_always compton --config ~/.compton.conf
-exec polybar --config=/home/lukasz/.config/polybar/config example
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
+exec_always --no-startup-id compton --config ~/.compton.conf
+exec --no-startup-id polybar --config=/home/lukasz/.config/polybar/config example
 exec --no-startup-id dunst
 exec --no-startup-id redshift
+
+bindsym $mod+F9  exec --no-startup-id sudo systemctl restart sddm
+bindsym $mod+F10 exec --no-startup-id reboot
+bindsym $mod+F11 exec --no-startup-id sudo systemctl suspend
+bindsym $mod+F12 exec --no-startup-id poweroff
+
+for_window [class="Firefox"] move to workspace $ws1
+for_window [class="Code"] move  to workspace $ws3

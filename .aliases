@@ -4,3 +4,12 @@ alias comptonedit='vim ~/.compton.conf'
 alias xresedit='vim ~/.Xresources'
 alias polyedit='vim ~/.config/polybar/config'
 alias wyloguj='systemctl restart sddm'
+
+alias updates='yaourt -Syy && yaourt -Qu --aur'
+alias cupdates='yaourt -Syy && yaourt -Qu --aur | wc -l'
+
+alias wifion='ip link set wlp4s0 up'
+alias wifioff='ip link set wlp4s0 down'
+
+alias uninstall='pacman -Rs '
+alias uninstall-c='pacman -Rsn '
