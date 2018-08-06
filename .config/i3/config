@@ -170,3 +170,4 @@ bindsym $mod+F12 exec --no-startup-id poweroff
 
 for_window [class="Firefox"] move to workspace $ws1
 for_window [class="Code"] move  to workspace $ws3
+for_window [class="Pidgin"] floating enable
