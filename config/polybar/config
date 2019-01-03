@@ -389,9 +389,8 @@ menu-2-1-exec = menu-open-0
 [module/updates]
 type = custom/script
 exec = pacman -Qu | wc -l
-interval = 360
+interval = 10
 format-prefix = " "
-format-underline = ${colors.background}
 
 [settings]
 screenchange-reload = true
