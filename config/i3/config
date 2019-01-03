@@ -10,24 +10,27 @@ floating_modifier $mod
 # Gaps and border
 gaps inner 10
 gaps outer 10
-default_border pixel 3
+default_border pixel 2
 
 #######################################################################
 # COLORS
-######################################################################
+#######################################################################
 set_from_resource $foreground foreground
 set_from_resource $background background
-set_from_resource $blue		  color4
-set_from_resource $gray		  color6
+set_from_resource $black	  color0
 set_from_resource $red		  color1
 set_from_resource $green	  color2
-set_from_resource $magenta	  color13
+set_from_resource $yellow	  color3
+set_from_resource $blue		  color4
+set_from_resource $magenta	  color5
+set_from_resource $cyan 	  color6
+set_from_resource $white	  color7
 
-# class					border			background		text		indicator	
-client.focused			        $blue			$blue			$foreground	$blue		
-client.focused_inactive	                $background		$background		$foreground	$blue	
-client.unfocused		        $background		$background		$foreground	$blue		
-client.urgent			        $red			$red			$foreground	$blue	
+# class					   border			background		text		indicator	
+client.focused			   $blue			$blue			$foreground	$green		
+client.focused_inactive	   $background		$background		$foreground	$blue	
+client.unfocused		   $background		$background		$foreground	$blue		
+client.urgent			   $red			    $red			$foreground	$blue	
 
 client.background	                $background
 
@@ -48,11 +51,10 @@ bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+q kill
-bindsym $mod+Shift+q kill
 
 # start dmenu & rofi
 bindsym $mod+d exec dmenu_run
-bindsym Mod1+space exec rofi -show run -theme /home/lukasz/.config/rofi/themes/onedark 
+#bindsym Mod1+space exec rofi -show run -theme /home/lukasz/.config/rofi/themes/onedark 
 
 # change focus
 bindsym $mod+h focus left
@@ -79,16 +81,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # resize windows without resize mode
-bindsym $mod+Control+h resize shrink width 10 px or 10 ppt
-bindsym $mod+Control+k resize grow   height 10 px or 10 ppt
-bindsym $mod+Control+j resize shrink height 10 px or 10 ppt
-bindsym $mod+Control+l resize grow   width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-bindsym $mod+Control+Left  resize shrink width 10 px or 10 ppt
-bindsym $mod+Control+Down  resize grow   height 10 px or 10 ppt
-bindsym $mod+Control+Up    resize shrink height 10 px or 10 ppt
-bindsym $mod+Control+Right resize grow   width 10 px or 10 ppt
+bindsym $mod+u resize shrink width 10 px or 10 ppt
+bindsym $mod+i resize grow   height 10 px or 10 ppt
+bindsym $mod+o resize shrink height 10 px or 10 ppt
+bindsym $mod+p resize grow   width 10 px or 10 ppt
 
 # split in horizontal orientation
 bindsym $mod+g split h
@@ -100,7 +96,6 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -163,9 +158,8 @@ exec --no-startup-id polybar --config=/home/lukasz/.config/polybar/config exampl
 exec --no-startup-id dunst
 exec --no-startup-id redshift
 
-bindsym $mod+F9  exec --no-startup-id sudo systemctl restart sddm
 bindsym $mod+F10 exec --no-startup-id reboot
-bindsym $mod+F11 exec --no-startup-id sudo systemctl suspend
+bindsym $mod+F11 exec --no-startup-id systemctl suspend
 bindsym $mod+F12 exec --no-startup-id poweroff
 
 for_window [class="Firefox"] move to workspace $ws1
