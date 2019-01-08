@@ -10,7 +10,8 @@ floating_modifier $mod
 # Gaps and border
 gaps inner 10
 gaps outer 10
-default_border pixel 2
+smart_gaps on
+default_border pixel 1
 
 #######################################################################
 # COLORS
@@ -27,7 +28,7 @@ set_from_resource $cyan 	  color6
 set_from_resource $white	  color7
 
 # class					   border			background		text		indicator	
-client.focused			           $magenta			$magenta		$foreground	$green		
+client.focused			           $red			        $red		$foreground	$green		
 client.focused_inactive	                   $background		        $background		$foreground	$blue	
 client.unfocused		           $background		        $background		$foreground	$blue		
 client.urgent			           $red			        $red			$foreground	$blue	
@@ -152,6 +153,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+exec --no-startup-id VBoxClient-all
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec_always --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id polybar --config=/home/lukasz/.config/polybar/config example
@@ -162,6 +164,6 @@ bindsym $mod+F10 exec --no-startup-id reboot
 bindsym $mod+F11 exec --no-startup-id systemctl suspend
 bindsym $mod+F12 exec --no-startup-id poweroff
 
-for_window [class="Firefox"] move to workspace $ws1
+#for_window [class="Firefox"] move to workspace $ws1
 for_window [class="Code"] move  to workspace $ws3
 for_window [class="Pidgin"] floating enable

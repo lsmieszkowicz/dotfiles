@@ -13,3 +13,8 @@ alias wifioff='ip link set wlp4s0 down'
 
 alias uninstall='pacman -Rs '
 alias uninstall-c='pacman -Rsn '
+
+alias p='sudo pacman -S'
+alias y='yay -S --noconfirm'
+alias v='vim'
+alias sv='sudo vim'
